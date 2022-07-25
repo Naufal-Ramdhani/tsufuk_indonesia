@@ -31,12 +31,12 @@
 				<div class="scrollbar-inner sidebar-wrapper">
 					<div class="user">
 						<div class="photo">
-							<img src="{{ asset('template_admin') }}/assets/img/profile.jpg">
+							<img src="{{ asset('template_admin') }}/assets/img/profile2.jpg">
 						</div>
 						<div class="info">
 							<a class="" data-toggle="collapse" href="#collapseExample" aria-expanded="true">
 								<span>
-									Hizrian
+									Admin
 									<span class="user-level">Administrator</span>
 									<span class="caret"></span>
 								</span>
@@ -74,45 +74,26 @@
 						</li>
 						<li class="nav-item">
 							<a href="components.html">
-								<i class="la la-table"></i>
+								<i class="la la-user"></i>
 								<p>Data Anggota</p>
 								<span class="badge badge-count">14</span>
 							</a>
 						</li>
-						<li class="nav-item">
+						<li class="nav-item">   
 							<a href="forms.html">
-								<i class="la la-keyboard-o"></i>
-								<p>Data Pelatih</p>
+								<i class="la la-kalender"></i>
+								<p>Jadwal Kegiatan</p>
 								<span class="badge badge-count">50</span>
 							</a>
 						</li>
 						<li class="nav-item">
 							<a href="tables.html">
 								<i class="la la-th"></i>
-								<p>Tables</p>
+								<p>Informasi</p>
 								<span class="badge badge-count">6</span>
 							</a>
 						</li>
-						<li class="nav-item">
-							<a href="notifications.html">
-								<i class="la la-bell"></i>
-								<p>Notifications</p>
-								<span class="badge badge-success">3</span>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a href="typography.html">
-								<i class="la la-font"></i>
-								<p>Typography</p>
-								<span class="badge badge-danger">25</span>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a href="icons.html">
-								<i class="la la-fonticons"></i>
-								<p>Icons</p>
-							</a>
-						</li>
+						
 					</ul>
 				</div>
 			</div>
@@ -120,7 +101,7 @@
 				<div class="content">
 					<div class="container-fluid">
 						<h4 class="page-title">Dashboard</h4>
-<!-- 							<div class="col-md-3">
+<!-- 						<div class="col-md-3">
 								<div class="card card-stats">
 									<div class="card-body ">
 										<div class="row">
