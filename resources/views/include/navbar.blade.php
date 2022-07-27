@@ -1,7 +1,8 @@
-<div class="wrapper">
+<div class="wrapper" >
+
 		<div class="main-header">
 			<div class="logo-header">
-				<a href="index.html" class="logo">
+				<a href="{{ route('home') }}" class="logo text-white">
 					Tsufuk Indonesia
 				</a>
 				

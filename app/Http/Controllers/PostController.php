@@ -7,17 +7,23 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
+    function __construct()
+    {
+         $this->middleware('permission:post-list|post-create|post-edit|post-delete', ['only' => ['index', 'show']]);
+         $this->middleware('permission:post-create', ['only' => ['create', 'store']]);
+         $this->middleware('permission:post-edit', ['only' => ['edit', 'update']]);
+         $this->middleware('permission:post-delete', ['only' => ['destroy']]);
+    }
     /**public function index()
     {
         $posts = Post::latest()->get();
         return view('posts.index', compact('posts'));
     }*/
-    public function index()
+    public function index(Request $request)
     {
-        $posts = Post::latest()->paginate(5);
-    
-        return view('posts.index',compact('posts'))
-            ->with('i', (request()->input('page', 1) - 1) * 5);
+        $data = Post::latest()->paginate(5);
+
+        return view('posts.index',compact('data'));
     }
 
     public function create()
@@ -27,26 +33,53 @@ class PostController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'detail' => 'required',
+        $this->validate($request, [
+            'title' => 'required',
+            'body' => 'required',
         ]);
+        $input = $request->except(['_token']);
     
-        post::create($request->all());
-     
+        Post::create($input);
+    
         return redirect()->route('posts.index')
-                        ->with('success','post created successfully.');
+            ->with('success','Post created successfully.');
     }
 
-    public function show(Post $posts)
+    public function show($id)
     {
-        return view('posts.show',compact('posts'));
-    } 
+        $post = Post::find($id);
 
-    public function edit(Post $posts)
-    {
-        return view('posts.edit',compact('posts'));
+        return view('posts.show', compact('post'));
     }
 
+    public function edit($id)
+    {
+        $post = Post::find($id);
+
+        return view('posts.edit',compact('post'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $this->validate($request, [
+            'title' => 'required',
+            'body' => 'required',
+        ]);
+
+        $post = Post::find($id);
+    
+        $post->update($request->all());
+    
+        return redirect()->route('posts.index')
+            ->with('success', 'Post updated successfully.');
+    }
+
+    public function destroy($id)
+    {
+        Post::find($id)->delete();
+    
+        return redirect()->route('posts.index')
+            ->with('success', 'Post deleted successfully.');
+    }
 
 }

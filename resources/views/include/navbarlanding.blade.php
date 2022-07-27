@@ -16,7 +16,19 @@
           <li><a class="nav-link scrollto" href="#pricing">Jadwal</a></li>
           <li><a class="nav-link scrollto" href="#team">Pendaftaran anggota</a></li>
           
-          <li><a class="nav-link scrollto" href="#contact">Logout</a></li>
+          <li>
+            @auth
+            <a href="javascript:;" class="nav-link scrollto" href="{{ route('logout') }}" onclick="event.preventDefault();
+              document.getElementById('logout-form').submit();">Logout
+              <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+              @csrf
+              </form>
+            </a>
+            @else  
+            <a class="nav-link scrollto" href="{{ route('login') }}">Login</a>
+            @endauth
+            
+          </li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->

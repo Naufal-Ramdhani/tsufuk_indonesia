@@ -35,20 +35,20 @@
 				<span class="login100-form-title p-b-41">
 					Account Login
 				</span>
-				<form action="test" class="login100-form validate-form p-b-33 p-t-5">
-
+				<form method="POST" action="#" id="login_form" class="login100-form validate-form p-b-33 p-t-5">
+					@csrf
 					<div class="wrap-input100 validate-input" data-validate = "Enter username">
-						<input class="input100" type="text" name="username" placeholder="User name">
+						<input class="input100" type="text" id="email" name="email" placeholder="Email">
 						<span class="focus-input100" data-placeholder="&#xe82a;"></span>
 					</div>
 
 					<div class="wrap-input100 validate-input" data-validate="Enter password">
-						<input class="input100" type="password" name="pass" placeholder="Password">
+						<input class="input100" id="password" type="password" name="password" placeholder="Password">
 						<span class="focus-input100" data-placeholder="&#xe80f;"></span>
 					</div>
 
 					<div class="container-login100-form-btn m-t-32">
-						<button class="login100-form-btn">
+						<button type="submit" id="login_btn" class="login100-form-btn">
 							Login
 						</button>
 					</div>
@@ -60,7 +60,7 @@
 	
 
 	<div id="dropDownSelect1"></div>
-	
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
 <!--===============================================================================================-->
 	<script src="assets/vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
@@ -77,6 +77,42 @@
 	<script src="assets/vendor/countdowntime/countdowntime.js"></script>
 <!--===============================================================================================-->
 	<script src="assets/js/main.js"></script>
+	<script>
+		$(function() {
+			$("#login_form").submit(function(e) {
+				e.preventDefault();
+				$("#login_btn").val('Silahkan Tunggu...');
+				$("#login_btn").prop('disabled', true);
+				$.ajax({
+					url: '{{ route('loginPembeli-pembeli') }}',
+					method: 'POST',
+					data: $(this).serialize(),
+					dataType: 'json',
+					success: function(res){
+						if (res.status == 400) {
+							showError('email', res.messages.email);
+							showError('password', res.messages.password);
+							$("#login_btn").val('Masuk');
+							$("#login_btn").prop('disabled', false);
+						} else if (res.status == 401) {
+							// $("#login_alert").html(showMessage('danger', res.messages));
+							// iziToast.warning({ //tampilkan iziToast dengan notif data berhasil disimpan pada posisi kanan bawah
+							// 	title: 'Peringatan',
+							// 	message: res.messages,
+							// 	position: 'topRight'
+							// });
+							$("#login_btn").val('Masuk');
+							$("#login_btn").prop('disabled', false);
+						} else {
+							if(res.status == 200) {
+								window.location = '{{ route('admin') }}';
+							}
+						}
+					}
+				});
+			});
+		});
+	</script>
 
 </body>
 </html>

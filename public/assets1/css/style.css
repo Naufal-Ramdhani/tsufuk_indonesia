@@ -430,8 +430,8 @@ h6 {
 --------------------------------------------------------------*/
 #hero {
   width: 100%;
-  height: calc(100vh - 110px);
-  background: url("../img/hero-bg.jpg") top center;
+  height: calc(90vh - 100px);
+  background: url("../img/tsufuk/sparing1.png") top center;
   background-size: cover;
   position: relative;
 }
