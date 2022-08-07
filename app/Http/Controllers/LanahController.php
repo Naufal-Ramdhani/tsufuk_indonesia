@@ -3,15 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\lanah;
+use App\Models\Lanah;
+use App\Models\Anggota;
 
 class LanahController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function index()
     {
         $lanah = Lanah::all();
@@ -36,19 +33,19 @@ class LanahController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
+        // $this->validate($request, [
 
-            'lanah' => 'required',
-            'alamat' => 'required',
-        ]);
+        //     'lanah' => 'required',
+        //     'alamat' => 'required',
+        // ]);
 
         $lanah = Lanah::create([
-            'lanah' => $request->lanah,
+            'nama' => $request->nama,
             'alamat' => $request->alamat,
         ]);
         
 
-        return redirect()->route('lanah.index')->with('success','Product created successfully.');
+        return redirect()->route('lanah.index')->with('success','Lanah berhasil ditambahkan.');
     }
 
     /**
@@ -62,12 +59,6 @@ class LanahController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
        $lanah = Lanah::find($id) ;
@@ -89,7 +80,7 @@ class LanahController extends Controller
         $lanah = Lanah::findOrfail($id);
         $lanah->update($data);
 
-        return redirect()->route('admin.lanah.index')->with(['success' => 'Data Berhasil Diubah']);
+        return redirect()->route('lanah.index')->with(['success' => 'Data Berhasil Diubah']);
     }
 
     /**

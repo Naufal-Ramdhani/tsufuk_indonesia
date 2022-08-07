@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use App\Models\Jadwal;
+use App\Models\LanahDetail;
 
 class JadwalController extends Controller
 {
@@ -15,8 +16,13 @@ class JadwalController extends Controller
      */
     public function index()
     {
-        $jadwal = Jadwal::all();
+        $jadwal = Jadwal::with('lanahDetail')->latest()->get();
         return view('admin.jadwal.index', compact('jadwal'));
+        // echo $jadwal;
+        // echo '<br>';
+        // echo $jadwal[0]->lanahDetail->pelatih->user->name;
+        // echo $jadwal[0]->lanahDetail->lanah->nama;
+        // echo $jadwal[0]->tsufuk;
     }
 
     /**
@@ -26,7 +32,8 @@ class JadwalController extends Controller
      */
     public function create()
     {
-        return view('admin.jadwal.create');
+        $lanah_detail = LanahDetail::all();
+        return view('admin.jadwal.create',compact('lanah_detail'));
     }
 
     /**
@@ -38,22 +45,21 @@ class JadwalController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-            'hari_latihan' => 'required',
-            'jam_latihan' => 'required',
-            'pelatih' => 'required',
-            'lanah' => 'required',
-            'tsufuk' => 'required',
+            'hari' => 'required',
+            'waktu' => 'required',
+            
             
         ]);
     
        
 
         $jadwal = Jadwal::create([
-            'hari_latihan' => $request->hari_latihan,
-            'jam_latihan' => $request->jam_latihan,
+            'hari' => $request->hari,
+            'waktu' => $request->waktu,
             'pelatih' => $request->pelatih,
-            'lanah' => $request->lanah,
+            'lanah_detail' => $request->lanah_detail_id,
             'tsufuk' => $request->tsufuk,
+           
         ]);
         // $jadwal->hari_latihan = $request->hari_latihan;
         // $jadwal->jam_latihan = $request->jam_latihan;
@@ -105,7 +111,7 @@ class JadwalController extends Controller
         $jadwal = Jadwal::findOrfail($id);
         $jadwal->update($data);
 
-        return redirect()->route('admin.jadwal.index')->with(['success' => 'Data Berhasil Diubah']);
+        return redirect()->route('jadwal.index')->with(['success' => 'Data Berhasil Diubah']);
     }
 
     // {

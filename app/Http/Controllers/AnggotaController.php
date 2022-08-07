@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use App\Models\Anggota;
+use App\Models\Lanah;
 
 
 class AnggotaController extends Controller

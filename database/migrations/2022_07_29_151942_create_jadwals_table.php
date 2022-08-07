@@ -15,11 +15,10 @@ return new class extends Migration
     {
         Schema::create('jadwals', function (Blueprint $table) {
             $table->id();
-            $table->string('hari_latihan');
-            $table->time('jam_latihan');
-            $table->string('pelatih');
-            $table->string('lanah');
-            $table->string('tsufuk');
+            $table->string("hari")->nullable();
+            $table->time("waktu")->nullable();
+            $table->foreignId("lanah_detail")->nullable();
+            $table->string("tsufuk")->nullable();
             $table->timestamps();
         });
     }

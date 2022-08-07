@@ -30,6 +30,7 @@
 <body>
 	
 	<div class="limiter">
+		{{-- <div class="container-login100" style="background-image: url('images/bg-01.jpg');"> --}}
 		<div class="container-login100" style="background-image: url('images/bg-01.jpg');">
 			<div class="wrap-login100 p-t-30 p-b-50">
 				<span class="login100-form-title p-b-41">
@@ -46,13 +47,16 @@
 						<input class="input100" id="password" type="password" name="password" placeholder="Password">
 						<span class="focus-input100" data-placeholder="&#xe80f;"></span>
 					</div>
+					
+					<div class="d-flex justify-content-end pt-3 pr-5">
+						<a href="{{ route('forgotPassword-get') }}">Lupa Password</a>
+					</div>
 
-					<div class="container-login100-form-btn m-t-32">
+					<div class="container-login100-form-btn m-t-16">
 						<button type="submit" id="login_btn" class="login100-form-btn">
 							Login
 						</button>
 					</div>
-
 				</form>
 			</div>
 		</div>
@@ -103,10 +107,12 @@
 							// });
 							$("#login_btn").val('Masuk');
 							$("#login_btn").prop('disabled', false);
-						} else {
-							if(res.status == 200) {
-								window.location = '{{ route('admin') }}';
-							}
+						} else if (res.status === 200) {
+							window.location = '{{ route('admin') }}';
+						}  else if (res.status === 202) {
+							window.location = '{{ route('anggota') }}';
+						} else if (res.status === 201) {
+							window.location = '{{ route('pelatih') }}';
 						}
 					}
 				});

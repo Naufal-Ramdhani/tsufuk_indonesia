@@ -14,25 +14,26 @@
             <form method="post" action="{{ route('jadwal.store') }}" enctype="multipart/form-data">
             @csrf
                 <div class="form-group">
-                            <label for="hari_latihan">Hari</label>
-                            <input type="text" name="hari_latihan" class="form-control" id="text"placeholder="Hari" required>
+                            <label for="hari">Hari</label>
+                            <input type="text" name="hari" class="form-control" id="text"placeholder="Hari" required>
                         </div>
 
                         <div class="form-group">
-                            <label for="jam_latihan">Jam</label>
-                            <input type="text" name="jam_latihan" class="form-control" id="text" placeholder="Jam" required>
+                            <label for="waktu">Jam</label>
+                            <input type="time" name="waktu" class="form-control" id="text" placeholder="waktu" required>
                         </div>
 
-                        <div class="form-group">
-                            <label for="pelatih">Pelatih</label>
-                            <input type="text" name="pelatih" class="form-control" id="text" placeholder="Pelatih" required>
+                        <div class="form-outline">
+                            <label class="form-label" for="phoneNumber">Lanah</label>
+                            <select class="form-select" name="lanah_detail_id" id="lanah_detail_id" aria-label="Default select example">
+                              <option selected disabled>Pilih Lanah</option>
+                              @foreach ($lanah_detail as $lanah_detail)
+                                <option value="{{ $lanah_detail->lanah->id }}">{{ $lanah_detail->lanah->nama}} ({{ $lanah_detail->pelatih->user->name}})</option>
+                              @endforeach
+                            </select>
                         </div>
 
-                        <div class="form-group">
-                            <label for="lanah">Lanah</label>
-                            <input type="text" name="lanah" class="form-control" id="text" placeholder="lanah" required>
-                        </div>
-
+                    
                         <div class="form-group">
                             <label for="tsufuk">Tsufuk/Puteri Gading</label>
                             <input type="text" name="tsufuk" class="form-control" id="text" placeholder="Tsufuk/Puteri Gading" required>

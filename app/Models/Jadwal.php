@@ -10,4 +10,9 @@ class Jadwal extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
+
+    public function lanahDetail()
+    {
+        return $this->belongsTo(LanahDetail::class, 'lanah_detail');
+    }
 }

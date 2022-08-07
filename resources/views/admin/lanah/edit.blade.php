@@ -11,16 +11,18 @@
         <a href="{{ route('lanah.index') }}" class="btn btn-warning btn-sm ml-auto">Kembali</a>
         <br>
         <div class="card-body">
-            <form method="post" action="{{ route('lanah.update') }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('lanah.update', $lanah->id) }}" enctype="multipart/form-data">
             @csrf
-                <div class="form-group">
-                            <label for="lanah">Nama Lanah</label>
-                            <input type="text" name="lanah" class="form-control" id="text" value="{{ $lanah->lanah}}">
+            @method('PUT')
+             
+                <div class="form-                ">
+                            <label for="nama">Nama Lanah</label>
+                            <input type="text" name="nama" class="form-control" id="text" value="{{ $lanah->nama}}">
                         </div>
 
                         <div class="form-group">
-                            <label for="alamat">Alamat</label>
-                            <input type="text" name="alamat" class="form-control" id="text" value="{{ $lanah->alamat }}" >
+                            <label for="lanah">Alamat</label>
+                            <input type="text" name="alamat" class="form-control" value="{{ $lanah->alamat}}"  placeholder="Alamat" required>
                         </div>
 
                         <div class="form-group">

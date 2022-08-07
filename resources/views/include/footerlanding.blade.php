@@ -7,8 +7,8 @@
             <div class="footer-info ">
               <h3></h3>
               <p>
-                A108 Adam Street <br>
-                NY 535022, USA<br><br>
+                Pengurus Pusat<br>
+                Jl Lembang no 01 dusun Cimasuk Kec. Pamulihan Kab.Sumedang Jawa Barat<br><br>
                 <strong>Phone:</strong> +1 5589 55488 55<br>
                 <strong>Email:</strong> info@example.com<br>
               </p>

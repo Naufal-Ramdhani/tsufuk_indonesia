@@ -35,10 +35,10 @@
                                    <tbody>
                                    @forelse ($jadwal as $row)
                                 <tr>
-                                    <td>{{ $row->hari_latihan }}</td>
-                                    <td>{{ $row->jam_latihan }}</td>
-                                    <td>{{ $row->pelatih }}</td>
-                                    <td>{{ $row->lanah }}</td>
+                                    <td>{{ $row->hari }}</td>
+                                    <td>{{ $row->waktu }}</td>
+                                    <td>{{ $row->lanahDetail->pelatih->user->name }}</td>
+                                    <td>{{ $row->lanahDetail->lanah->nama }}</td>
                                     <td>{{ $row->tsufuk }}</td>
                                     <td class="text-center">
                                         <a href="{{ route('jadwal.edit', $row->id)}}" class="btn btn-warning btn-sm"><i class="fa fa-edit">Edit</i></a>
